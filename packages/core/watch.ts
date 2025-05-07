@@ -5,6 +5,7 @@ import { Watcher } from "./utils/fs.ts";
 import { contentType } from "@std/media-types";
 import { serve } from "srvx";
 import { ws, upgradeWs } from "./utils/ws.ts";
+import type { BunAdapter } from "crossws/adapters/bun";
 import type { Peer } from "crossws";
 
 /**
@@ -66,7 +67,7 @@ export async function watch<T extends Record<string, Transformer>>(
  * @internal
  */
 async function devServer(getBuild: () => RolldownOutput, peers: Set<Peer>) {
-  const socket = ws({
+  const socket = await ws({
     hooks: {
       open(peer) {
         peers.add(peer);
@@ -106,6 +107,9 @@ async function devServer(getBuild: () => RolldownOutput, peers: Set<Peer>) {
           "Content-Length": size.toString(),
         },
       });
+    },
+    bun: {
+      websocket: (socket as BunAdapter).websocket,
     },
     upgrade(req) {
       const { pathname } = new URL(req.url);
