@@ -49,10 +49,10 @@ npx jsr add @joy/md
 // build.ts
 import { build, watch } from "@joy/core";
 import { markdown, type } from "@joy/md";
+import process from "node:process";
 
 // Choose build or watch based on environment
-const run = Deno.env.get("DEV") === "true" ? watch : build;
-
+const run = process.env.DEV === "true" ? watch : build;
 await run({
   routesDir: "./content",  // Where your source files are located
   outDir: "./dist",        // Where to output the built files

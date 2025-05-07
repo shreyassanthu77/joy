@@ -1,3 +1,4 @@
+import process from "node:process";
 import { type SkipFn, generateRouteMap } from "./router.ts";
 import { join, resolve } from "node:path";
 import {
@@ -10,7 +11,7 @@ import { devPlugin } from "./plugins/dev.ts";
 
 /**
  * Configuration options for building or watching a site.
- * 
+ *
  * @template T - Record of file extensions to transformer functions
  */
 export interface BuildOptions<T extends Record<string, Transformer>> {
@@ -18,22 +19,22 @@ export interface BuildOptions<T extends Record<string, Transformer>> {
    * Base directory for the project (defaults to current working directory)
    */
   baseDir?: string;
-  
+
   /**
    * Directory containing source files (defaults to "routes")
    */
   routesDir?: string;
-  
+
   /**
    * Directory where built files will be output (defaults to "build")
    */
   outDir?: string;
-  
+
   /**
    * Functions to determine which paths should be skipped during build
    */
   skipPaths?: SkipFn[];
-  
+
   /**
    * Object mapping file extensions to transformer functions
    */
@@ -53,7 +54,7 @@ export interface Result {
 
 /**
  * Processes build options and creates Rolldown configuration
- * 
+ *
  * @param options - User-provided build options
  * @param dev - Whether to enable development mode
  * @returns Processed build options and Rolldown configuration
@@ -63,7 +64,7 @@ export function getBuildOptions<T extends Record<string, Transformer>>(
   options: BuildOptions<T>,
   dev = false,
 ): Result {
-  const baseDir = options.baseDir ? resolve(options.baseDir) : Deno.cwd();
+  const baseDir = options.baseDir ? resolve(options.baseDir) : process.cwd();
   const routesDir = join(baseDir, options.routesDir ?? "routes");
   const buildDir = join(baseDir, options.outDir ?? "build");
   const extensions = Object.keys(options.transformers).map((e) => {
