@@ -9,9 +9,10 @@ This is a post
 
 ```js
 console.log("Hello World");
-```  
+```
 
 ## Hello World
+
 
 ```ts
 let a = 1;
