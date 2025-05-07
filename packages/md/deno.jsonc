@@ -1,6 +1,6 @@
 {
   "name": "@joy/md",
-  "version": "0.0.1",
+  "version": "0.1.0",
 	"license": "MIT",
   "imports": {
     "@std/front-matter": "jsr:@std/front-matter@^1.0.9",
