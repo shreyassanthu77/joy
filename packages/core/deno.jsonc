@@ -1,0 +1,15 @@
+{
+  "name": "@joy/core",
+  "version": "0.0.1",
+	"license": "MIT",
+  "imports": {
+    "@std/media-types": "jsr:@std/media-types@^1.1.0",
+    "crossws": "npm:crossws@^0.3.4",
+    "lol-html": "npm:lol-html@^2.2.0",
+    "rolldown": "npm:rolldown@^1.0.0-beta.8",
+    "srvx": "npm:srvx@^0.6.0"
+  },
+  "exports": {
+    ".": "./mod.ts"
+  }
+}

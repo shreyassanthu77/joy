@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "example:dev": "DEV=true deno -A ./example/build.ts",
+    "example:build": "deno -A ./example/build.ts"
+  },
+  "workspace": [
+    "packages/core",
+    "packages/md"
+  ]
+}
