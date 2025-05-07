@@ -1,4 +1,6 @@
 import type { Plugin } from "rolldown";
+import { fileURLToPath } from "node:url";
+import { readFile } from "node:fs/promises";
 
 export function devPlugin(): Plugin {
   return {
@@ -16,9 +18,9 @@ export function devPlugin(): Plugin {
         id: /^joy:dev-script$/,
       },
       async handler() {
-        const script = await fetch(import.meta.resolve("./dev-script.ts")).then(
-          (res) => res.text(),
-        );
+        const url = import.meta.resolve("./dev-script.ts");
+        const path = fileURLToPath(url);
+        const script = await readFile(path, "utf-8");
         return {
           code: script,
           moduleType: "js",
