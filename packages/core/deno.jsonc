@@ -1,7 +1,7 @@
 {
   "name": "@joy/core",
-  "version": "0.1.0",
-	"license": "MIT",
+  "version": "0.1.1",
+  "license": "MIT",
   "imports": {
     "@std/media-types": "jsr:@std/media-types@^1.1.0",
     "crossws": "npm:crossws@^0.3.4",
